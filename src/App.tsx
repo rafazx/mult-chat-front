@@ -1,16 +1,14 @@
 import React from 'react';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/react-hooks';
 
 import apolloClient from './services/apollo';
+import NewMessageNotification from './components/NewMessageNotification';
 
 const App: React.FC = () => {
   return (
     <ApolloProvider client={apolloClient}>
-    <div>
-      <h2>Login</h2>
-      <input>digite seu nick</input>
-    </div>
-  </ApolloProvider>
+      <NewMessageNotification/>
+    </ApolloProvider>
   );
 }
 

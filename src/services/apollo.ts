@@ -1,21 +1,32 @@
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { split, HttpLink } from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
+import { WebSocketLink } from '@apollo/client/link/ws';
 
-
-const client = new ApolloClient({
-  uri: 'http://localhost:3000',
-  cache: new InMemoryCache()
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:3000/graphql`,
+  options: {
+    reconnect: true
+  }
 });
 
-client
-  .query({
-    query: gql`
-    {
-      getMessagesInRoom(page: 1, roomName: "Sala01") {
-        text
-      }
-    }
-    `
-  })
-  .then(result => console.log(result));
+const httpLink = new HttpLink({
+  uri: 'http://localhost:3000/graphl'
+});
 
-export default client;
+const link = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
+
+export default new ApolloClient({
+  link,
+  cache: new InMemoryCache()
+});
