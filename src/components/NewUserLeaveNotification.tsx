@@ -17,9 +17,10 @@ const NewUserLeaveNotification: React.FC = () => {
     if(error) {
         return <div>Error! {error.message}</div>
     }
-    console.log(data)
     if(data && data.userLeaveRoom.roomName === localStorage.getItem('roomName')) {
-        toast.warning(`Usuário : ${data.userLeaveRoom.nickName} saiu da Sala!`);
+        toast.warning(`Usuário : ${data.userLeaveRoom.nickName} saiu da Sala!`, {
+            toastId: "leaveUserId"
+        });
     }
     return (
         <div>

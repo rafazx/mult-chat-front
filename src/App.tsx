@@ -8,10 +8,12 @@ import Routes from './routes/index';
 
 const App: React.FC = () => {
   return (
+    <div>
     <ApolloProvider client={apolloClient}>
-      <ToastContainer />
       <Routes />
     </ApolloProvider>
+    <ToastContainer autoClose={2000}/>
+    </div>
   );
 }
 

@@ -40,46 +40,22 @@ const PrivateChatRoute = (props: PrivateRouteProps) => {
     );
 };
 
-
-const PrivateLoginRoute = (props: PrivateRouteProps) => {
-    const { component: Component, ...rest } = props;
-    const nickName = localStorage.getItem('nickName');
-    const roomName = localStorage.getItem('roomName');
-
-    return (
-        <Route
-            {...rest}
-            render={(routeProps) =>
-                nickName && 
-                ! roomName ? (
-                    <Component {...routeProps} />
-                ) : (
-                        <Redirect
-                            to={{
-                                pathname: '/rooms',
-                                state: { from: routeProps.location }
-                            }}
-                        />
-                    )
-            }
-        />
-    );
-};
-
 const PrivateRoute = (props: PrivateRouteProps) => {
     const nickName = localStorage.getItem('nickName');
+    const roomName = localStorage.getItem('roomName');
     const { component: Component, ...rest } = props;
 
     return (
         <Route
             {...rest}
             render={(routeProps) =>
-                nickName ? (
+                nickName &&
+                !roomName? (
                     <Component {...routeProps} />
                 ) : (
                         <Redirect
                             to={{
-                                pathname: '/',
+                                pathname: '/chat',
                                 state: { from: routeProps.location }
                             }}
                         />
@@ -88,13 +64,14 @@ const PrivateRoute = (props: PrivateRouteProps) => {
         />
     );
 };
+
 
 const Routes = () => (
     <BrowserRouter>
         <Switch>
             <PrivateChatRoute exact path="/chat" component={Chat}/>
             <PrivateRoute exact path="/rooms" component={Rooms}/>
-            <PrivateLoginRoute path="/" component={Login}/>
+            <Route path="/" component={Login}/>
         </Switch>
     </BrowserRouter>
 )

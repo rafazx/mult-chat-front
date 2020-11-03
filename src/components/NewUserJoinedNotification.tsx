@@ -17,11 +17,11 @@ const NewUserJoinedNotification: React.FC = () => {
     if(error) {
         return <div>Error! {error.message}</div>
     }
-    console.log(data)
     if(data && data.userJoinedRoom && data.userJoinedRoom.roomName === localStorage.getItem('roomName')) {
-        toast.warning(`Usuário : ${data.userJoinedRoom.nickName} entrou na Sala!`);
+        toast.warning(`Usuário : ${data.userJoinedRoom.nickName} entrou na Sala!`, {
+            toastId: "joinedUserId"
+        });
     }
-
     return (
         <div></div>
     )

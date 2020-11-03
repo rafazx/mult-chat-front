@@ -2,7 +2,6 @@ import { gql, useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css'; 
 import '../styles/Login.css';
 
 const CREATE_USER = gql`

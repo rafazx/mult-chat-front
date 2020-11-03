@@ -1,0 +1,16 @@
+.containerRoom {
+    width: 100%;
+    border: 1px solid  #1A1A1D;
+    height: 40px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.containerRoom:hover{box-shadow: 2px 2px 2px #CCC}
+
+ul {
+    list-style: none;
+    padding: 0;
+}

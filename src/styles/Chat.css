@@ -1,16 +1,52 @@
-.outerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #1A1A1D;
-  }
-  
-  .container {
+.chatContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background: #FFFFFF;
-    height: 60%;
-    width: 35%;
+    height: 800px;
+    width: 1200px;
+}
+
+.outerContainerChat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1A1A1D;
+}
+
+@media screen and (max-width: 960px) {
+  .outerContainerChat {
+    justify-content: initial;
+    align-items: initial;  
   }
+
+  .chatContainer {
+      width: 100%;
+      height: auto;
+  }
+
+  .header {
+    justify-content: center;
+    height: 70px;
+  }
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.exitChat {
+    margin-left: 40px;
+    margin-top: 30px;
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2979FF;
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+}
